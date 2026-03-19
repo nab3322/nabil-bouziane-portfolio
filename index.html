@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nabil Bouziane</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --text: #e8e8e8;
+      --muted: #666;
+      --accent: #c8f04a;
+      --accent-dim: rgba(200, 240, 74, 0.08);
+      --radius: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-color: var(--border); }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: -0.3px;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── SECTIONS ── */
+    section { padding: 120px 0; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 600;
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 0;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 64px;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .hero-tag-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 600;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .hero-name .accent { color: var(--accent); }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 460px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--text); border-color: #333; }
+
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 40px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      min-width: 180px;
+    }
+    .stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+      align-items: start;
+    }
+    .about-text { color: #aaa; line-height: 1.8; }
+    .about-text p + p { margin-top: 16px; }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-item:last-child { border-bottom: none; }
+    .info-key { font-size: 12px; color: var(--muted); }
+    .info-val { font-size: 13px; font-weight: 500; text-align: right; }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; gap: 2px; margin-top: 48px; }
+
+    .exp-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--surface);
+      transition: border-color 0.2s;
+    }
+    .exp-item:hover { border-color: #2e2e2e; }
+
+    .exp-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 24px 28px;
+      cursor: pointer;
+      gap: 24px;
+    }
+
+    .exp-company {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .exp-role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+    }
+
+    .exp-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .exp-period {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .exp-location {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .exp-chevron {
+      width: 16px; height: 16px;
+      color: var(--muted);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .exp-item.open .exp-chevron { transform: rotate(180deg); }
+
+    .exp-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .exp-item.open .exp-body { max-height: 600px; }
+
+    .exp-bullets {
+      list-style: none;
+      padding: 0 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid var(--border);
+    }
+    .exp-bullets li {
+      font-size: 13.5px;
+      color: #999;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 9px;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .exp-bullets li strong { color: var(--text); font-weight: 500; }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .project-card:hover {
+      border-color: #2e2e2e;
+      background: #141414;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .project-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+
+    .project-link {
+      flex-shrink: 0;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .project-link:hover { color: var(--accent); }
+    .project-link svg { width: 15px; height: 15px; }
+
+    .project-course {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .project-period {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.65;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .project-desc code {
+      font-size: 12px;
+      font-family: 'Courier New', monospace;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .skill-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      background: var(--surface);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .skill-card:hover {
+      border-color: #2e2e2e;
+      background: #141414;
+    }
+
+    .skill-card-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .skill-tag {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--accent-dim);
+      border: 1px solid rgba(200, 240, 74, 0.15);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .skill-tag.dim {
+      color: var(--muted);
+      background: transparent;
+      border-color: var(--border);
+    }
+
+    /* ── EDUCATION ── */
+    .edu-list { display: flex; flex-direction: column; gap: 16px; margin-top: 48px; }
+
+    .edu-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: start;
+      padding: 24px 28px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+    }
+
+    .edu-year {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    .edu-degree {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+    .edu-school { font-size: 13px; color: var(--muted); }
+
+    /* ── LANGUAGES ── */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 48px;
+    }
+
+    .lang-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 16px;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .lang-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .lang-level {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+    }
+    .lang-native { color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contact { padding-bottom: 160px; }
+
+    .contact-inner {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 64px;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .contact-inner h2 { margin-bottom: 12px; }
+
+    .contact-sub {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 12px 22px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-link:hover { color: var(--text); border-color: #333; }
+
+    .contact-link svg { width: 16px; height: 16px; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span { font-size: 13px; color: var(--muted); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 48px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .container { padding: 0 24px; }
+      section { padding: 80px 0; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-stats { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .lang-grid { grid-template-columns: repeat(3, 1fr); }
+      .contact-inner { padding: 40px 24px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-logo">NB<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:nabil.bouziane@studio.unibo.it" class="nav-cta">Get in touch</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-tag">
+            <span class="hero-tag-dot"></span>
+            Available for opportunities
+          </div>
+          <h1 class="hero-name">Nabil<br>Bouzi<span class="accent">ane</span></h1>
+          <p class="hero-subtitle">
+            Backend developer &amp; MIS student at the University of Bologna.
+            I build scalable APIs and data-driven systems at the intersection of software engineering, business, and compliance.
+          </p>
+          <div class="hero-actions">
+            <a href="#experience" class="btn-primary">View my work</a>
+            <a href="#contact" class="btn-secondary">Contact me</a>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-value">16+</div>
+            <div class="stat-label">Endpoints optimized</div>
+          </div>
+          <div>
+            <div class="stat-value">PHP→Py</div>
+            <div class="stat-label">Backend migration led</div>
+          </div>
+          <div>
+            <div class="stat-value">5</div>
+            <div class="stat-label">Languages spoken</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">About</div>
+      <h2>A developer who thinks<br>in systems, not just code.</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a Management Information Systems student at the University of Bologna with a passion for backend architecture, API design, and the intersection of technology with legal and economic frameworks.
+          </p>
+          <p>
+            During my internship at SIR Case, I led the migration of core business logic from PHP to Python, architected a FastAPI layer built on SOLID principles, and resolved complex database performance issues through SQLAlchemy optimization.
+          </p>
+          <p>
+            Beyond code, I serve as a Municipal Council Member in Bentivoglio, lead a Scout group, and volunteer as a blood donor — because impact matters beyond the terminal.
+          </p>
+        </div>
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-key">Location</span>
+            <span class="info-val">Bentivoglio, Bologna — Italy</span>
+          </div>
+          <div class="info-item">
+            <span class="info-key">Nationality</span>
+            <span class="info-val">Italian · Moroccan</span>
+          </div>
+          <div class="info-item">
+            <span class="info-key">Degree</span>
+            <span class="info-val">B.Sc. MIS · Unibo</span>
+          </div>
+          <div class="info-item">
+            <span class="info-key">Email</span>
+            <span class="info-val">nabil.bouziane<br>@studio.unibo.it</span>
+          </div>
+          <div class="info-item">
+            <span class="info-key">Phone</span>
+            <span class="info-val">(+39) 349 617 2329</span>
+          </div>
+          <div class="info-item">
+            <span class="info-key">Politics</span>
+            <span class="info-val">Municipal Council Member</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label">Experience</div>
+      <h2>Where I've built things.</h2>
+
+      <div class="exp-list">
+
+        <!-- SIR Case -->
+        <div class="exp-item open">
+          <div class="exp-header" onclick="toggleExp(this)">
+            <div>
+              <div class="exp-company">SIR Case</div>
+              <div class="exp-role">Backend Developer Intern</div>
+            </div>
+            <div class="exp-meta">
+              <div class="exp-period">Nov 2024 – Feb 2026</div>
+              <div class="exp-location">Ozzano dell'Emilia, IT</div>
+            </div>
+            <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="exp-body">
+            <ul class="exp-bullets">
+              <li><strong>Backend Migration:</strong> Spearheaded migration of core business logic from PHP to Python, building a modern, secure web infrastructure.</li>
+              <li><strong>API Architecture (FastAPI):</strong> Designed a robust API layer using FastAPI and SOLID principles with strict separation of Controllers and Endpoints.</li>
+              <li><strong>Performance Engineering:</strong> Optimized 16+ core endpoints, reducing latency and bandwidth via response streamlining and data pre-aggregation.</li>
+              <li><strong>Database Optimization:</strong> Resolved N+1 query bottlenecks through explicit JOINs in SQLAlchemy and managed asynchronous transactions.</li>
+              <li><strong>System Orchestration:</strong> Engineered a high-complexity "Super Payload" orchestrator for parallel email and notification delivery.</li>
+              <li><strong>Cross-Functional Collaboration:</strong> Established shared API contracts with the frontend team, ensuring seamless system integration.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Vertiv -->
+        <div class="exp-item">
+          <div class="exp-header" onclick="toggleExp(this)">
+            <div>
+              <div class="exp-company">Vertiv Co.</div>
+              <div class="exp-role">Short-term Corporate Intern</div>
+            </div>
+            <div class="exp-meta">
+              <div class="exp-period">Jul 2021</div>
+              <div class="exp-location">Poggio Piccolo, IT</div>
+            </div>
+            <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="exp-body">
+            <ul class="exp-bullets">
+              <li>Managed front-desk reception and visitor welcoming services at a multinational corporation.</li>
+              <li>Gained early exposure to corporate operations and professional standards.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- IT Consultant -->
+        <div class="exp-item">
+          <div class="exp-header" onclick="toggleExp(this)">
+            <div>
+              <div class="exp-company">Associazione Progetto Speranza Onlus</div>
+              <div class="exp-role">IT Consultant</div>
+            </div>
+            <div class="exp-meta">
+              <div class="exp-period">2015 – Present</div>
+              <div class="exp-location">Italy</div>
+            </div>
+            <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="exp-body">
+            <ul class="exp-bullets">
+              <li>Provided expert guidance on Microsoft Office optimization for a non-profit organization.</li>
+              <li>Implemented management software platforms to improve internal workflow efficiency.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tutor -->
+        <div class="exp-item">
+          <div class="exp-header" onclick="toggleExp(this)">
+            <div>
+              <div class="exp-company">Parrocchia di Bentivoglio</div>
+              <div class="exp-role">Tutor for Students with Special Needs</div>
+            </div>
+            <div class="exp-meta">
+              <div class="exp-period">2015 – 2024</div>
+              <div class="exp-location">Bentivoglio, IT</div>
+            </div>
+            <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="exp-body">
+            <ul class="exp-bullets">
+              <li>Developed tailored teaching strategies for middle school students with learning disabilities and social-emotional vulnerabilities.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label">Projects</div>
+      <h2>Things I've built.</h2>
+      <div class="projects-grid">
+
+        <!-- 1 -->
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-title">Collaborative Versioned Note Management System</div>
+            <a href="https://github.com/nab3322/unibo_ids_notes_webapp" target="_blank" class="project-link" title="GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            </a>
+          </div>
+          <div class="project-course">Software Engineering · Unibo</div>
+          <div class="project-period">Sep 2025 – Feb 2026</div>
+          <p class="project-desc">Full-stack web app for secure note creation, multi-user sharing and real-time collaboration. Features a versioning engine that tracks every modification for audit trails and state restoration. Includes conflict resolution for simultaneous editing and a granular permission framework (Private / Read-only / Write).</p>
+          <div class="project-tags">
+            <span class="skill-tag">Agile / Scrum</span>
+            <span class="skill-tag">Full-Stack</span>
+            <span class="skill-tag dim">GitHub Issues</span>
+            <span class="skill-tag dim">Access Control</span>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-title">Travel Companion — Smart Mobility &amp; Predictive App</div>
+          </div>
+          <div class="project-course">Mobile Applications Lab · Unibo</div>
+          <div class="project-period">Oct 2025 – Nov 2025</div>
+          <p class="project-desc">Mobile app with real-time GPS logging for routes, durations, and distances stored locally. A predictive analytics module forecasts future travel trends from historical patterns. Background services handle automated journey detection via the Activity Recognition API. All analytics run on-device — privacy by design.</p>
+          <div class="project-tags">
+            <span class="skill-tag">React Native</span>
+            <span class="skill-tag">Predictive Analytics</span>
+            <span class="skill-tag dim">GPS / Location</span>
+            <span class="skill-tag dim">Privacy-by-Design</span>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-title">Multithreaded Distributed Pub/Sub System</div>
+          </div>
+          <div class="project-course">Operating Systems · Unibo</div>
+          <p class="project-desc">Java client-server Publish-Subscribe system over TCP/IP sockets. Non-blocking client model with dedicated Sender and Receiver threads for simultaneous bidirectional streams. Thread-safe resource management via <code>synchronized</code>, <code>wait()</code>, and <code>notifyAll()</code>. Includes a server-side admin interface for real-time topic inspection and message deletion.</p>
+          <div class="project-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Multithreading</span>
+            <span class="skill-tag dim">TCP/IP Sockets</span>
+            <span class="skill-tag dim">Concurrency</span>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-title">Gamified Coding Platform — JavaFX Interactive Learning</div>
+          </div>
+          <div class="project-course">Internet Programming · Unibo</div>
+          <p class="project-desc">Desktop application in JavaFX/FXML with MVC architecture. Gamification engine with code-reordering, real-time debugging challenges, and output-prediction exercises. Complete user auth module with persistent registration, login, and session management between application states.</p>
+          <div class="project-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">JavaFX</span>
+            <span class="skill-tag dim">MVC</span>
+            <span class="skill-tag dim">EdTech</span>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-title">Predictive Modeling for Clinical Drug Classification</div>
+          </div>
+          <div class="project-course">Numerical Statistics · Unibo</div>
+          <p class="project-desc">Predictive system that classifies the most effective drug for patients from demographic and physiological data (Age, Sex, BP, Cholesterol, Na/K ratio). EDA with Pandas, Seaborn, Matplotlib. Built and compared Decision Trees, Random Forests, and SVM models. End-to-end pipeline with Label Encoding and validation splits.</p>
+          <div class="project-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag dim">Pandas</span>
+            <span class="skill-tag dim">Data Science</span>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-title">Relational Database Design &amp; Management System</div>
+          </div>
+          <div class="project-course">Database · Unibo</div>
+          <p class="project-desc">End-to-end relational database design from requirements analysis to SQL implementation. Advanced E-R diagrams, logical restructuring, and normalization. Complex SQL queries, views, integrity constraints, Triggers, and Stored Procedures for business logic automation. Workload analysis and index optimization for query performance.</p>
+          <div class="project-tags">
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">E-R Modeling</span>
+            <span class="skill-tag dim">DBMS</span>
+            <span class="skill-tag dim">Normalization</span>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="project-card" style="grid-column: 1 / -1;">
+          <div class="project-top">
+            <div class="project-title">Strategic Business Analysis — Salvatore Ferragamo S.p.A.</div>
+          </div>
+          <div class="project-course">Business Strategy · Unibo</div>
+          <p class="project-desc">In-depth strategic evaluation of Ferragamo's global repositioning under new creative leadership ("New Day" strategy). Applied Porter's Five Forces, SWOT, and VRIO frameworks. Analyzed the Business Model Canvas, omnichannel distribution, and EMEA/North American market performance. Assessed ESG and digital transformation as core pillars for long-term resilience in luxury fashion.</p>
+          <div class="project-tags">
+            <span class="skill-tag dim">SWOT / VRIO</span>
+            <span class="skill-tag dim">Porter's Five Forces</span>
+            <span class="skill-tag dim">Business Model Canvas</span>
+            <span class="skill-tag dim">ESG</span>
+            <span class="skill-tag dim">Luxury Market</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label">Skills</div>
+      <h2>Tools &amp; technologies.</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-title">Backend</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">SQLAlchemy</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">REST APIs</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-title">Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">C / C++</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-title">Data &amp; DB</div>
+          <div class="skill-tags">
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Database Design</span>
+            <span class="skill-tag">Statsmodels</span>
+            <span class="skill-tag">SciPy</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-title">Architecture</div>
+          <div class="skill-tags">
+            <span class="skill-tag">SOLID Principles</span>
+            <span class="skill-tag">API Design</span>
+            <span class="skill-tag">System Migration</span>
+            <span class="skill-tag dim">Modular Design</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-title">Soft Skills</div>
+          <div class="skill-tags">
+            <span class="skill-tag dim">Team Collaboration</span>
+            <span class="skill-tag dim">Mentoring</span>
+            <span class="skill-tag dim">Active Listening</span>
+            <span class="skill-tag dim">Leadership</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-title">Other</div>
+          <div class="skill-tags">
+            <span class="skill-tag dim">ICT System Integration</span>
+            <span class="skill-tag dim">Windows</span>
+            <span class="skill-tag dim">Copywriting</span>
+            <span class="skill-tag dim">NPM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-label">Education</div>
+      <h2>Academic background.</h2>
+      <div class="edu-list">
+        <div class="edu-item">
+          <span class="edu-year">2022 – Now</span>
+          <div>
+            <div class="edu-degree"><a href="https://corsi.unibo.it/laurea/InformaticaManagement" target="_blank" style="color:inherit;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">B.Sc. in Management Information Systems</a></div>
+            <div class="edu-school"><a href="https://www.unibo.it" target="_blank" style="color:var(--muted);transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Alma Mater Studiorum – Università di Bologna</a> · Bologna, Italy</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <span class="edu-year">2021</span>
+          <div>
+            <div class="edu-degree"><a href="https://www.cambridgeenglish.org" target="_blank" style="color:inherit;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">Cambridge First Certificate in English — B2</a></div>
+            <div class="edu-school"><a href="https://www.cambridgeenglish.org" target="_blank" style="color:var(--muted);transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Cambridge Language Assessment</a> · Bologna, Italy</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <span class="edu-year">2017 – 2022</span>
+          <div>
+            <div class="edu-degree"><a href="https://www.liceosabin.edu.it" target="_blank" style="color:inherit;border-bottom:1px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">Scientific High School Diploma — Applied Sciences &amp; Computer Science</a></div>
+            <div class="edu-school"><a href="https://www.liceosabin.edu.it" target="_blank" style="color:var(--muted);transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Liceo Scientifico A.B. Sabin</a> · Bologna, Italy · Final grade: 88/100</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div style="margin-top:64px;">
+        <div class="section-label">Languages</div>
+        <div class="lang-grid">
+          <div class="lang-card">
+            <div class="lang-name">Italian</div>
+            <div class="lang-level lang-native">Native</div>
+          </div>
+          <div class="lang-card">
+            <div class="lang-name">Arabic</div>
+            <div class="lang-level lang-native">Native</div>
+          </div>
+          <div class="lang-card">
+            <div class="lang-name">English</div>
+            <div class="lang-level">B2</div>
+          </div>
+          <div class="lang-card">
+            <div class="lang-name">Spanish</div>
+            <div class="lang-level" style="color:var(--muted)">A2</div>
+          </div>
+          <div class="lang-card">
+            <div class="lang-name">French</div>
+            <div class="lang-level" style="color:var(--muted)">A1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="section-label" style="justify-content:center;">Contact</div>
+        <h2>Let's work together.</h2>
+        <p class="contact-sub">Open to internships, collaborations, and interesting problems.</p>
+        <div class="contact-links">
+          <a href="mailto:nabil.bouziane@studio.unibo.it" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            nabil.bouziane@studio.unibo.it
+          </a>
+          <a href="tel:+393496172329" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.18 2 2 0 012.11.01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.06-1.36a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            (+39) 349 617 2329
+          </a>
+          <a href="https://www.comune.bentivoglio.bo.it" target="_blank" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            Municipal Council
+          </a>
+          <a href="https://bolognacngei.it" target="_blank" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            Scout Leader · CNGEI
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Nabil Bouziane</span>
+    <span>Bologna · Italy</span>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    function toggleExp(header) {
+      const item = header.closest('.exp-item');
+      item.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
